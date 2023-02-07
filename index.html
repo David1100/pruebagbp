@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-app-bar class="pa-suave" color="white" elevation="1" app>
+                <v-toolbar-side-icon class="mx-2">
+                    <v-img max-width="80"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Rappi_logo.svg/800px-Rappi_logo.svg.png" />
+                </v-toolbar-side-icon>
+                <v-toolbar-title>
+                    Portal manager de restaurantes
+                </v-toolbar-title>
+
+                <v-spacer></v-spacer>
+
+                <v-badge overlap color="red" content="6">
+                    <v-btn icon outlined text small>
+                        <v-icon small>headset_mic</v-icon>
+                    </v-btn>
+                </v-badge>
+
+                <v-tab>
+                    <v-btn rounded color="#E1EDFF" small class="mr-2">
+                        Restaurantes
+                    </v-btn>
+                    <v-btn rounded color="default" small text class="mr-2">
+                        Comercios
+                    </v-btn>
+                    <v-btn icon small fab class="orange" dark>
+                        <v-icon dense dark>person</v-icon>
+                    </v-btn>
+                </v-tab>
+            </v-app-bar>
+            <v-navigation-drawer mini-variant app>
+                <v-list dense rounded>
+                    <v-list-item v-for="item in items" :key="item.icon" link class="px-2">
+                        <v-icon icon dense :color="item.active ? 'primary':'grey'" dark>{{ item.icon }}</v-icon>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+            <v-main>
+                <v-app-bar color="white" elevation="1">
+                    <v-toolbar-side-icon class="mx-2">
+                        <v-icon>arrow_back_ios</v-icon>
+                    </v-toolbar-side-icon>
+                    <v-toolbar-title>
+                        <strong>Promociones activas</strong>
+                    </v-toolbar-title>
+
+                    <v-spacer></v-spacer>
+
+                    <v-tab>
+                        <v-btn color="primary" class="mr-2">
+                            Crear slider
+                        </v-btn>
+                        <v-btn color="default" text class="mr-2">
+                            Previsualizar
+                        </v-btn>
+                    </v-tab>
+                </v-app-bar>
+                <v-container fluid>
+                    <v-row>
+                        <v-col lg="4">
+                            <v-row>
+                                <v-col lg="12" class="mt-2">
+                                    <v-text-field
+                                    solo
+                                    label="Buscar"
+                                    append-icon="search"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col lg="12">
+                                    <v-row v-for="item in items_contenido01" :key="item.title">
+                                        <v-col lg="10">
+                                            <v-card class="my-1 r-2">
+                                                <v-card-title>
+                                                    <v-img class="r-2" :src="item.img" height="200px">
+                                                    </v-img>
+                                                </v-card-title>
+                                                <v-card-text>
+                                                    <h3>{{ item.title }}</h3>
+                                                    <h4><strong>Tipo:</strong> {{ item.subtitle }}</h4>
+                                                </v-card-text>
+                                                <v-card-actions>
+                                                    <v-icon>event_note</v-icon>
+                                                    5 agosto 2022
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col lg="2">
+                                            <v-icon>flip_to_front</v-icon>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                        <v-divider vertical></v-divider>
+                        <v-col lg="8" overflow>
+                            <v-row class="px-3">
+                                <v-col lg="6">
+                                    <v-card class="r-2 bg-grey">
+                                        <v-card-title>
+                                            <v-row class="pa-2">
+                                                <v-col lg="1">
+                                                    <v-icon dense>menu</v-icon>
+                                                </v-col>
+                                                <v-col lg="7">
+                                                    <h4>Slider 1</h4>
+                                                </v-col>
+                                                <v-col lg="4" class="d-flex justify-end">
+                                                    <v-switch class="mt-0" v-model="ex11" color="success" hide-details>
+                                                    </v-switch>
+                                                    <v-icon dense>more_vert</v-icon>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            <v-row class="pa-4">
+                                                <v-card v-for="item in items_contenido01" :key="item.title"
+                                                    class="my-1">
+                                                    <v-card-title>
+                                                        <v-img class="r-2" :src="item.img" height="200px">
+                                                        </v-img>
+                                                    </v-card-title>
+                                                    <v-card-text>
+                                                        <h3>{{ item.title }}</h3>
+                                                        <h4><strong>Tipo:</strong> {{ item.subtitle }}</h4>
+                                                    </v-card-text>
+                                                    <v-card-actions>
+                                                        <v-icon>event_note</v-icon>
+                                                        5 agosto 2022
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-row>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                                <v-col lg="6">
+                                    <v-card class="r-2 bg-grey">
+                                        <v-card-title>
+                                            <v-row class="pa-2">
+                                                <v-col lg="1">
+                                                    <v-icon dense>menu</v-icon>
+                                                </v-col>
+                                                <v-col lg="7">
+                                                    <h4>Slider 2</h4>
+                                                </v-col>
+                                                <v-col lg="4" class="d-flex justify-end">
+                                                    <v-switch class="mt-0" v-model="ex11" color="success" hide-details>
+                                                    </v-switch>
+                                                    <v-icon dense>more_vert</v-icon>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            <v-row class="pa-4">
+                                                <v-card v-for="item in items_contenido01" :key="item.title"
+                                                    class="my-1">
+                                                    <v-card-title>
+                                                        <v-img class="r-2" :src="item.img" height="200px">
+                                                        </v-img>
+                                                    </v-card-title>
+                                                    <v-card-text>
+                                                        <h3>{{ item.title }}</h3>
+                                                        <h4><strong>Tipo:</strong> {{ item.subtitle }}</h4>
+                                                    </v-card-text>
+                                                    <v-card-actions>
+                                                        <v-icon>event_note</v-icon>
+                                                        5 agosto 2022
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-row>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    drawer: true,
+                    items: [{
+                        title: 'Home',
+                        icon: 'mdi-home-city',
+                        active: false
+                    },
+                    {
+                        title: 'My Account',
+                        icon: 'mdi-account',
+                        active: true
+
+                    },
+                    {
+                        title: 'Users',
+                        icon: 'mdi-account-group-outline',
+                        active: false
+
+                    },
+                    {
+                        title: 'Users',
+                        icon: 'mdi-account-group-outline',
+                        active: false
+
+                    },
+                    {
+                        title: 'Users',
+                        icon: 'mdi-account-group-outline',
+                        active: false
+
+                    },
+                    {
+                        title: 'Users',
+                        icon: 'mdi-account-group-outline',
+                        active: false
+
+                    },
+                    ],
+                    items_contenido01: [{
+                        img: 'https://www.recetasnestle.com.ec/sites/default/files/srh_recipes/4e4293857c03d819e4ae51de1e86d66a.jpg',
+                        title: 'Todo a 10k',
+                        subtitle: 'precio fijo'
+                    },
+                    {
+                        img: 'https://www.comedera.com/wp-content/uploads/2022/03/Pan-de-perro-caliente-shutterstock_1472131574.jpg',
+                        title: 'Todo a 10k',
+                        subtitle: 'precio fijo'
+                    },
+                    {
+                        img: 'https://www.recetasnestle.com.ec/sites/default/files/srh_recipes/4e4293857c03d819e4ae51de1e86d66a.jpg',
+                        title: 'Todo a 10k',
+                        subtitle: 'precio fijo'
+                    },
+                    {
+                        img: 'https://www.comedera.com/wp-content/uploads/2022/03/Pan-de-perro-caliente-shutterstock_1472131574.jpg',
+                        title: 'Todo a 10k',
+                        subtitle: 'precio fijo'
+                    },
+                    ]
+                }
+            },
+        })
+    </script>
+    <style>
+        .r-2 {
+            border-radius: 5px;
+        }
+
+        .bg-grey {
+            background: #F6F9FB !important;
+        }
+
+    </style>
+</body>
+
+</html>
